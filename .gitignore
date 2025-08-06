@@ -1,0 +1,94 @@
+# Общие системные файлы
+.DS_Store
+*.swp
+*.swo
+Thumbs.db
+*.idea
+.vscode/
+
+# Бинарные файлы и артефакты сборки
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.bin
+*.class
+*.jar
+*.war
+*.ear
+*.log
+*.pyc
+__pycache__/
+bin/
+obj/
+build/
+dist/
+*.suo
+*.user
+*.cache
+
+# Зависимости
+node_modules/
+vendor/
+packages/
+.env
+*.env.local
+
+# Логи и временные файлы
+*.log
+*.tmp
+temp/
+tmp/
+
+# Документация
+docs/_build/
+docs/_out/
+
+# Специфичные для языков/фреймворков
+
+## Go
+/server/go.sum
+/server/bin/
+/server/pkg/
+
+## C#/.NET
+/engine/**/bin/
+/engine/**/obj/
+*.pdb
+*.ilk
+
+## JavaScript/Node.js
+/web/node_modules/
+/web/dist/
+/web/.env
+/web/.env.local
+/web/package-lock.json
+/web/yarn.lock
+/web/.svelte-kit
+/web/.vite
+
+## Unity
+/desktop_app/[Ll]ibrary/
+/desktop_app/[Tt]emp/
+/desktop_app/[Oo]bj/
+/desktop_app/[Bb]uild/
+/desktop_app/[Bb]uilds/
+/desktop_app/[Ll]ogs/
+/desktop_app/[Mm]emoryCaptures/
+/desktop_app/*.csproj
+/desktop_app/*.unityproj
+/desktop_app/*.sln
+/desktop_app/*.suo
+/desktop_app/*.user
+/desktop_app/*.userprefs
+
+## Docker
+/deploy/**/.env
+*.tar.gz
+*.dockerignore
+
+# Исключения (разрешаем важные конфиги)
+!*.example
+!*.sample
+!*.default
