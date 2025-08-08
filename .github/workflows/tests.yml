@@ -1,0 +1,31 @@
+name: Linters Check
+on:
+  pull_request:
+    branches: develop
+
+jobs:
+  lint-go:
+    if: "contains(github.event.pull_request.changed_files, '.go')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v4
+        with:
+          go-version: '1.23'
+      - name: Run golangci-lint
+        run: |
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          golangci-lint run ./...
+
+  lint-csharp:
+    if: "contains(github.event.pull_request.changed_files, '.cs')"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+      - name: Run dotnet format
+        run: |
+          dotnet tool install -g dotnet-format
+          dotnet format --check
