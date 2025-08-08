@@ -1,11 +1,11 @@
 name: Linters Check
 on:
   pull_request:
-    branches: develop
+    branches: [develop, main]
 
 jobs:
   lint-go:
-    if: "contains(github.event.pull_request.changed_files, '.go')"
+    if: 'contains(github.event.pull_request.changed_files, ".go")'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,7 +18,7 @@ jobs:
           golangci-lint run ./...
 
   lint-csharp:
-    if: "contains(github.event.pull_request.changed_files, '.cs')"
+    if: 'contains(github.event.pull_request.changed_files, ".cs")'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
