@@ -14,19 +14,17 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '1.25'
-        run: |
-          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
-          golangci-lint run ./...
+      - run: go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+      - run: golangci-lint run ./...
 
   lint-csharp:
     name: Lint C-sharp Code
-    if: "contains(github.event.pull_request.changed_files, '.cs')"
+    if: contains(github.event.pull_request.changed_files, '.cs')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v3
         with:
           dotnet-version: '8.0.x'
-        run: |
-          dotnet tool install -g dotnet-format
-          dotnet format --check --verbosity diagnostic
+      - run: dotnet tool install -g dotnet-format
+      - run: dotnet format --check --verbosity diagnostic
