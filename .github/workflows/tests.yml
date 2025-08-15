@@ -2,30 +2,31 @@ name: Linters Check
 on:
   pull_request:
     branches: [develop, main]
+    paths: ['**.go', '**.cs']
 
 jobs:
   lint-go:
-    if: "contains(github.event.pull_request.changed_files, '.go')"
+    name: Lint Go Code
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.changed_files, '.go')
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
         with:
-          go-version: '1.23'
-      - name: Run golangci-lint
+          go-version: '1.25'
         run: |
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
           golangci-lint run ./...
 
   lint-csharp:
+    name: Lint C-sharp Code
     if: "contains(github.event.pull_request.changed_files, '.cs')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
-      - name: Run dotnet format
+          dotnet-version: '8.0.x'
         run: |
           dotnet tool install -g dotnet-format
-          dotnet format --check
+          dotnet format --check --verbosity diagnostic
