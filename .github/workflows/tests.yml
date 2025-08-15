@@ -8,7 +8,6 @@ jobs:
   lint-go:
     name: Lint Go Code
     runs-on: ubuntu-latest
-    if: contains(github.event.pull_request.changed_files, '.go')
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-go@v4
@@ -19,7 +18,6 @@ jobs:
 
   lint-csharp:
     name: Lint C-sharp Code
-    if: contains(github.event.pull_request.changed_files, '.cs')
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
